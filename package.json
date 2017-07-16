@@ -4,7 +4,8 @@
   "description": "This is the client side of parking lots management and parking lots assistant for users.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development supervisor -w modules,routes,views,app.js -e js,pug app"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,18 @@
   },
   "homepage": "https://github.com/xuchengli/parking-lots-assistant#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "jquery": "^3.2.1",
+    "pug": "^2.0.0-rc.2",
+    "uikit": "^3.0.0-beta.25"
   },
   "devDependencies": {
-    "webpack": "^3.2.0"
+    "css-loader": "^0.28.4",
+    "reload": "^2.0.0",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.2.0",
+    "webpack-dev-middleware": "^1.11.0",
+    "webpack-hot-middleware": "^2.18.2"
   }
 }

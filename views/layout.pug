@@ -1,0 +1,10 @@
+doctype html
+html
+    head
+        base(href=context + "/")
+        title(data-i18n="parking-lots-assistant-title")
+    body
+        block content
+        if env == "development"
+            script(src="/bundle.js")
+            script(src="/reload/reload.js")

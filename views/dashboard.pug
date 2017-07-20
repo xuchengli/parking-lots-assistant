@@ -5,7 +5,21 @@ block content
         .uk-card.uk-card-default.uk-card-body.uk-width-1-2
             h3.uk-card-title Default
             p It is for testing...
+            button#btn.uk-button.uk-button-primary.uk-button-small change Vue message
+            button#btn2.uk-button.uk-button-secondary.uk-button-small.uk-margin-left add Vue item
     span.uk-margin-left.uk-margin-top.uk-text-primary(uk-icon="icon: layers")
     span.uk-margin-left.uk-margin-top(uk-icon="icon: check")
     span.uk-margin-left.uk-margin-top(uk-icon="icon: user")
     span.uk-margin-left.uk-margin-top.uk-text-danger(uk-icon="icon: map")
+    #app.uk-margin-left.uk-margin-top
+        span(v-bind:title="message" v-if="seen") {{ message }}
+        span.uk-margin-left(uk-icon="icon: refresh" v-on:click="reverse")
+    .uk-margin-left.uk-margin-right.uk-margin-top(uk-grid)
+        ul#app-2.uk-list.uk-list-bullet.uk-width-1-2
+            li(v-for="item in items") {{ item.text }}
+        ul#app-3.uk-list.uk-list-striped.uk-width-1-2
+            todo-item(
+                v-for="item in items"
+                v-bind:item="item"
+                v-bind:key="item.id"
+            )

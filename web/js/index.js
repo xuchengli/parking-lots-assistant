@@ -9,47 +9,15 @@ import Vue from "vue/dist/vue.esm";
 
 UIkit.use(Icons);
 
-var app = new Vue({
-    el: "#app",
-    data: {
-        message: "Hello Vue!",
-        seen: true
-    },
-    methods: {
-        reverse() {
-            this.message = this.message.split("").reverse().join("")
-        }
-    }
-});
-var app2 = new Vue({
-    el: "#app-2",
-    data: {
-        items: [
-            {
-                text: "item 1"
-            },
-            {
-                text: "item 2"
-            },
-            {
-                text: "item 3"
-            }
-        ]
-    }
-});
-$("#btn").on("click", evt => {
-    app.message = "Changed message....";
-});
-$("#btn2").on("click", evt => {
-    app2.items.push({ text: "item 4" });
-});
 Vue.component("todo-item", {
     props: ["item"],
     template: "<li>{{ item.text }}</li>"
 });
-var app3 = new Vue({
-    el: "#app-3",
+var app = new Vue({
+    el: "#app",
     data: {
+        message: "hello vue",
+        seen: true,
         items: [
             {
                 id: 0,
@@ -64,5 +32,34 @@ var app3 = new Vue({
                 text: "代办项目3"
             }
         ]
+    },
+    methods: {
+        reverse() {
+            this.message = this.message.split("").reverse().join("");
+        }
+    },
+    filters: {
+        capitalize: value => {
+            if (!value) return "";
+            value = value.toString();
+            return value.charAt(0).toUpperCase() + value.slice(1);
+        }
+    },
+    computed: {
+        reversedMessage() {
+            return this.message.split("").reverse().join("");
+        }
     }
+});
+app.$watch("message", function(newValue, oldValue) {
+    console.info("new value: ", newValue, "old value: ", oldValue);
+});
+$("#btn").on("click", evt => {
+    app.message = "changed message";
+});
+$("#btn2").on("click", evt => {
+    app.items.push({
+        id: 3,
+        text: "item 4"
+    });
 });

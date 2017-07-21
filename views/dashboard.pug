@@ -12,14 +12,15 @@ block content
     span.uk-margin-left.uk-margin-top(uk-icon="icon: user")
     span.uk-margin-left.uk-margin-top.uk-text-danger(uk-icon="icon: map")
     #app.uk-margin-left.uk-margin-top
-        span(v-bind:title="message" v-if="seen") {{ message }}
-        span.uk-margin-left(uk-icon="icon: refresh" v-on:click="reverse")
-    .uk-margin-left.uk-margin-right.uk-margin-top(uk-grid)
-        ul#app-2.uk-list.uk-list-bullet.uk-width-1-2
-            li(v-for="item in items") {{ item.text }}
-        ul#app-3.uk-list.uk-list-striped.uk-width-1-2
-            todo-item(
-                v-for="item in items"
-                v-bind:item="item"
-                v-bind:key="item.id"
-            )
+        span(:title="message | capitalize" v-if="seen") {{ message | capitalize }}
+        span.uk-margin-left {{ reversedMessage | capitalize }}
+        //- span.uk-margin-left(uk-icon="icon: refresh" @click="reverse")
+        .uk-margin-left.uk-margin-right.uk-margin-top(uk-grid)
+            ul.uk-list.uk-list-bullet.uk-width-1-2
+                li(v-for="item in items") {{ item.text }}
+            ul.uk-list.uk-list-striped.uk-width-1-2
+                todo-item(
+                    v-for="item in items"
+                    :item="item"
+                    :key="item.id"
+                )

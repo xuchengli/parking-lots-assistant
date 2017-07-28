@@ -5,7 +5,8 @@ import "../css/style.less";
 import $ from "jquery";
 import UIkit from "uikit-customization";
 import Icons from "uikit-customization/dist/js/uikit-icons";
-import Vue from "vue/dist/vue.esm";
+import Vue from "vue";
+import UkProgress from "uk-progress";
 
 UIkit.use(Icons);
 
@@ -13,11 +14,16 @@ Vue.component("todo-item", {
     props: ["item"],
     template: "<li>{{ item.text }}</li>"
 });
+Vue.component("uk-progress", UkProgress);
 var app = new Vue({
     el: "#app",
     data: {
         message: "hello vue",
         seen: true,
+        hasError: true,
+        style: {
+            fontSize: "30px"
+        },
         items: [
             {
                 id: 0,

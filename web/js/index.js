@@ -7,6 +7,7 @@ import UIkit from "uikit-customization";
 import Icons from "uikit-customization/dist/js/uikit-icons";
 import Vue from "vue";
 import UkProgress from "uk-progress";
+import UkDnd from "uk-dnd";
 
 UIkit.use(Icons);
 
@@ -15,6 +16,7 @@ Vue.component("todo-item", {
     template: "<li>{{ item.text }}</li>"
 });
 Vue.component("uk-progress", UkProgress);
+Vue.component("uk-dnd", UkDnd);
 var app = new Vue({
     el: "#app",
     data: {
@@ -42,6 +44,25 @@ var app = new Vue({
     methods: {
         reverse() {
             this.message = this.message.split("").reverse().join("");
+        },
+        dragend(x, y, width, height, children) {
+            let rep = new Vue({
+                render: h => h(
+                    "uk-dnd",
+                    {
+                        attrs: {
+                            x: x,
+                            y: y,
+                            width: width,
+                            height: height,
+                            clone: false,
+                            target: "#container"
+                        }
+                    },
+                    children
+                )
+            }).$mount();
+            $("#container").append(rep.$el);
         }
     },
     filters: {

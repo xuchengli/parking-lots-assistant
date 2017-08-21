@@ -1,34 +1,52 @@
 extends layout
 
 block content
-    .uk-container.uk-margin-top
-        #container.uk-card.uk-card-default.uk-card-body.uk-width-1-2
-            h3.uk-card-title Default
-            p It is for testing...
-            button#btn.uk-button.uk-button-primary.uk-button-small change Vue message
-            button#btn2.uk-button.uk-button-secondary.uk-button-small.uk-margin-left add Vue item
-    span.uk-margin-left.uk-margin-top.uk-text-primary(uk-icon="icon: layers")
-    span.uk-margin-left.uk-margin-top(uk-icon="icon: check")
-    span.uk-margin-left.uk-margin-top(uk-icon="icon: user")
-    span.uk-margin-left.uk-margin-top.uk-text-danger(uk-icon="icon: map")
-    #app.uk-margin-left.uk-margin-top.uk-position-relative
-        span(
-            :title="message | capitalize"
-            :class="{ 'uk-text-danger': hasError }"
-            :style="style"
-            v-if="seen"
-        ) {{ message | capitalize }}
-        span.uk-margin-left {{ reversedMessage | capitalize }}
-        //- span.uk-margin-left(uk-icon="icon: refresh" @click="reverse")
-        .uk-margin-left.uk-margin-right.uk-margin-top(uk-grid)
-            ul.uk-list.uk-list-bullet.uk-width-1-2
-                li(v-for="item of items") {{ item.text }}
-            ul.uk-list.uk-list-striped.uk-width-1-2
-                todo-item(
-                    v-for="item of items"
-                    :item="item"
-                    :key="item.id"
-                )
-        uk-progress(value="60" max="100" color="default" width="50%")
-        uk-dnd(x="300" target="#container" @drop-to-target="dragend")
-            span It is draggable text!
+    .uk-container.uk-margin-top.uk-margin-bottom(uk-height-viewport="expand: true")
+        #app.uk-height-1-1(uk-grid)
+            .uk-width-1-4.uk-padding-remove.uk-background-muted
+                .uk-position-relative.uk-align-center.uk-margin-top(style="width: 80%; height: 55px;")
+                    uk-dnd(width="100%" height="100%" target=".uk-tile" @drop-to-target="dragend")
+                        .uk-card.uk-card-body.uk-card-default.uk-padding-small Split video to images
+                .uk-position-relative.uk-align-center(style="width: 80%; height: 55px;")
+                    uk-dnd(width="100%" height="100%" target=".uk-tile" @drop-to-target="dragend")
+                        .uk-card.uk-card-body.uk-card-default.uk-padding-small Split big image to small
+                .uk-position-relative.uk-align-center(style="width: 80%; height: 55px;")
+                    uk-dnd(width="100%" height="100%" target=".uk-tile" @drop-to-target="dragend")
+                        .uk-card.uk-card-body.uk-card-default.uk-padding-small Classify images
+                .uk-position-relative.uk-align-center(style="width: 80%; height: 55px;")
+                    uk-dnd(width="100%" height="100%" target=".uk-tile" @drop-to-target="dragend")
+                        .uk-card.uk-card-body.uk-card-default.uk-padding-small Identify images
+            .uk-width-3-4
+                .uk-tile.uk-tile-muted.uk-padding-remove.uk-height-1-1(
+                    @mousedown="drawstart" @mousemove="draw" @mouseup="drawend")
+    //- .uk-container.uk-margin-top
+    //-     #container.uk-card.uk-card-default.uk-card-body.uk-width-1-2
+    //-         h3.uk-card-title Default
+    //-         p It is for testing...
+    //-         button#btn.uk-button.uk-button-primary.uk-button-small change Vue message
+    //-         button#btn2.uk-button.uk-button-secondary.uk-button-small.uk-margin-left add Vue item
+    //- span.uk-margin-left.uk-margin-top.uk-text-primary(uk-icon="icon: layers")
+    //- span.uk-margin-left.uk-margin-top(uk-icon="icon: check")
+    //- span.uk-margin-left.uk-margin-top(uk-icon="icon: user")
+    //- span.uk-margin-left.uk-margin-top.uk-text-danger(uk-icon="icon: map")
+    //- #app.uk-margin-left.uk-margin-top.uk-position-relative
+    //-     span(
+    //-         :title="message | capitalize"
+    //-         :class="{ 'uk-text-danger': hasError }"
+    //-         :style="style"
+    //-         v-if="seen"
+    //-     ) {{ message | capitalize }}
+    //-     span.uk-margin-left {{ reversedMessage | capitalize }}
+    //-     //- span.uk-margin-left(uk-icon="icon: refresh" @click="reverse")
+    //-     .uk-margin-left.uk-margin-right.uk-margin-top(uk-grid)
+    //-         ul.uk-list.uk-list-bullet.uk-width-1-2
+    //-             li(v-for="item of items") {{ item.text }}
+    //-         ul.uk-list.uk-list-striped.uk-width-1-2
+    //-             todo-item(
+    //-                 v-for="item of items"
+    //-                 :item="item"
+    //-                 :key="item.id"
+    //-             )
+    //-     uk-progress(value="60" max="100" color="default" width="50%")
+    //-     uk-dnd(x="300" target="#container" @drop-to-target="dragend")
+    //-         span It is draggable text!
